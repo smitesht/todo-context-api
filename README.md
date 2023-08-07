@@ -1,90 +1,70 @@
-# ToDo List using Context API
-This repository contains the code and details about learning ReactJS Context API.
+# Getting Started with Create React App
 
-### UI
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-![main-image](https://github.com/smitesht/todo-context-api/assets/52151346/eb50e9bc-5e09-4900-9254-013dd4bb9f50)
+## Available Scripts
 
-### High-Level Diagram
+In the project directory, you can run:
 
-![Todo List - ReactJS](https://github.com/smitesht/todo-context-api/assets/52151346/7a4feef7-16cc-4392-bc4f-c5024258fe22)
+### `npm start`
 
-### Context API:
-The context API will use to share data across the project.
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### Define Context API classes and objects
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-```
-import { createContext, useContext, useState } from "react";
+### `npm test`
 
-const TodoListContext = createContext();
-const TodoListUpdateContext = createContext();
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-export function useTodoListContext() {
-  return useContext(TodoListContext);
-}
+### `npm run build`
 
-export function useTodoListUpdateContext() {
-  return useContext(TodoListUpdateContext);
-}
-```
-### Create Context Provider function
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-```
-export const TodoListProvider = ({ children }) => {
-  const [todolist, setTodoList] = useState([]);
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-  const newTodoItem = (item) => {
-    console.log(item);
-    setTodoList((prevData) => [...prevData, item]);
-  };
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-  const deleteTodoItem = (id) => {
-    const newlist = todolist.filter((todo) => todo.id !== id);
-    setTodoList(newlist);
-  };
+### `npm run eject`
 
-  const updateTodoItem = (todo) => {
-    const newlist = todolist.map((data) => {
-      return data.id === todo.id
-        ? { ...data, task: todo.task, isUpdate: false }
-        : data;
-    });
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-    setTodoList(newlist);
-  };
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-  const onUpdateRequest = (id) => {
-    const newlist = todolist.map((data) => {
-      return data.id === id ? { ...data, isUpdate: true } : data;
-    });
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-    setTodoList(newlist);
-  };
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-  const isTaskComplete = (id) => {
-    const newlist = todolist.map((data) => {
-      return data.id === id ? { ...data, isComplete: !data.isComplete } : data;
-    });
+## Learn More
 
-    setTodoList(newlist);
-  };
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-  return (
-    <TodoListContext.Provider value={todolist}>
-      <TodoListUpdateContext.Provider
-        value={{
-          newTodoItem,
-          deleteTodoItem,
-          updateTodoItem,
-          isTaskComplete,
-          onUpdateRequest,
-        }}
-      >
-        {children}
-      </TodoListUpdateContext.Provider>
-    </TodoListContext.Provider>
-  );
-};
-```
+To learn React, check out the [React documentation](https://reactjs.org/).
 
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
